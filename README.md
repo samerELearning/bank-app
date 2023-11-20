@@ -50,7 +50,7 @@ Model-View-Controller (MVC)
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/<username>/sports-manager-website.git`
+1. Clone the repository: `git clone https://github.com/samerELearning/bank-app.git`
 2. Install dependencies: `composer install`
 3. Configure the database settings in the `.env` file
 4. Run migrations and seeders: `php artisan migrate --seed`
