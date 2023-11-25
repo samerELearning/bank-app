@@ -13,7 +13,6 @@ class Account extends Model
         'balance',
         'currency',
         'user_id',
-        'created_at',
         'status',
     ];
 
