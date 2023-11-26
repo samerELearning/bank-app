@@ -70,7 +70,15 @@ class UserController extends Controller
         $credentials = $request->only('name', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
+            // Get the currently authenticated user
+            $user = Auth::user();
+    
+            // Check the user's role and redirect accordingly
+            if ($user->role == 'admin') {
+                return redirect('/admin/dashboard');
+            } else {
+                return redirect('/dashboard');
+            }
         }
 
         return back()->withErrors([
