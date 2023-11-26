@@ -17,5 +17,7 @@
 
         <button type="submit">Register</button>
     </form>
+
+    <p>Already have an account? <a href="{{ route('login') }}">Login here</a>.</p>
 </body>
 </html>
