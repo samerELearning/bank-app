@@ -87,6 +87,26 @@ class UserController extends Controller
     }
 
     /**
+     * Show the user dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserDashboard()
+    {
+        return view('userDashboard');
+    }
+
+    /**
+     * Show the admin dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdminDashboard()
+    {
+        return view('adminDashboard');
+    }
+    
+    /**
      * Log the user out of the application.
      *
      * @return \Illuminate\Http\Response
