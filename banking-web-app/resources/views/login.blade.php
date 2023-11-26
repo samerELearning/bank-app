@@ -14,7 +14,11 @@
         <br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-
+        <br>
+        @if ($errors->has('loginError'))
+            <span class="text-danger">{{ $errors->first('loginError') }}</span>
+        @endif
+        <br>
         <button type="submit">Login</button>
     </form>
 
