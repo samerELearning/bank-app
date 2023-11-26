@@ -82,7 +82,7 @@ class UserController extends Controller
         }
 
         return back()->withErrors([
-            'name' => 'Invalid credentials.',
+            'loginError' => 'Invalid credentials.',
         ]);
     }
 
