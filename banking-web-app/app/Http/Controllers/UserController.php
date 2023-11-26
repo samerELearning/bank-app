@@ -93,7 +93,12 @@ class UserController extends Controller
      */
     public function showUserDashboard()
     {
-        return view('userDashboard');
+        // Ensure the user is not an admin
+        if (Auth::user()->role != 'admin') {
+            return view('userDashboard');
+        } else {
+            return redirect('/login');
+        }
     }
 
     /**
@@ -103,9 +108,14 @@ class UserController extends Controller
      */
     public function showAdminDashboard()
     {
-        return view('adminDashboard');
+        // Ensure the user is an admin
+        if (Auth::user()->role == 'admin') {
+            return view('adminDashboard');
+        } else {
+            return redirect('/login');
+        }
     }
-    
+
     /**
      * Log the user out of the application.
      *
