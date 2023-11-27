@@ -23,6 +23,10 @@ input[type="text"], input[type="password"] {
     margin: 10px 0;
 }
 
+.text-danger {
+    color: red;
+}
+
 button {
     padding: 10px 20px;
     background-color: #007BFF;
