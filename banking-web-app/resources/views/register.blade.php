@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Registration</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
     <h2>Register</h2>
