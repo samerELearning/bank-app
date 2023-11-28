@@ -22,5 +22,5 @@ Route::post('register', 'App\Http\Controllers\UserController@register');
 Route::get('login', 'App\Http\Controllers\UserController@showLoginForm')->name('login');
 Route::post('login', 'App\Http\Controllers\UserController@login');
 Route::post('logout', 'App\Http\Controllers\UserController@logout')->name('logout');
-Route::get('/dashboard', 'App\Http\Controllers\UserController@showUserDashboard')->name('user.dashboard');
+Route::get('/user/dashboard', 'App\Http\Controllers\UserController@showUserDashboard')->name('user.dashboard');
 Route::get('/admin/dashboard', 'App\Http\Controllers\UserController@showAdminDashboard')->name('admin.dashboard');
