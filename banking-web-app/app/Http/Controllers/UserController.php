@@ -16,6 +16,14 @@ class UserController extends Controller
      */
     public function showRegistrationForm()
     {
+        if (Auth::check()) { // if user is logged in
+            // Check the user's role and redirect accordingly
+            if (Auth::user()->role == 'admin') {
+                return redirect('/admin/dashboard');
+            } else {
+                return redirect('/user/dashboard');
+            }
+        }
         return view('register');
     }
 
@@ -51,6 +59,14 @@ class UserController extends Controller
      */
     public function showLoginForm()
     {
+        if (Auth::check()) { // if user is logged in
+            // Check the user's role and redirect accordingly
+            if (Auth::user()->role == 'admin') {
+                return redirect('/admin/dashboard');
+            } else {
+                return redirect('/user/dashboard');
+            }
+        }
         return view('login');
     }
 

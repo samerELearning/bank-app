@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (Auth::check()) { // if user is logged in
+        // Check the user's role and redirect accordingly
+        if (Auth::user()->role == 'admin') {
+            return redirect('/admin/dashboard');
+        } else {
+            return redirect('/user/dashboard');
+        }
+    }
     return view('login');
 });
 
