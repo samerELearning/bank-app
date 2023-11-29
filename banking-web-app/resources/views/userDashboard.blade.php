@@ -21,9 +21,21 @@
         a {
             color: green;
             text-decoration: none;
+            
         }
         a:hover {
             color: black;
+        }
+        button {
+            color: white;
+            background-color: #32CD32;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkgreen;
         }
     </style>
 </head>
@@ -36,7 +48,12 @@
         <li><a href="">Withdraw</a></li>
         <li><a href="">Deposit</a></li>
         <li><a href="">Transfer</a></li>
-        <li><a href="">Logout</a></li>
+        <li>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        </li>
     </ul>
 </body>
 </html>
