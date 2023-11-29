@@ -49,7 +49,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/dashboard');
+        return redirect('/user/dashboard');
     }
 
     /**
@@ -127,12 +127,15 @@ class UserController extends Controller
      */
     public function showAdminDashboard()
     {
-        // Ensure the user is an admin
-        if (Auth::user()->role == 'admin') {
-            return view('adminDashboard');
-        } else {
-            return redirect('/login');
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is an admin
+            if (Auth::user()->role == 'admin') {
+                return view('adminDashboard');
+            } else {
+                return redirect('/login');
+            }
         }
+        return view('login');
     }
 
     /**
