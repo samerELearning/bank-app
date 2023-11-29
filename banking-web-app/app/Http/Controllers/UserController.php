@@ -109,12 +109,15 @@ class UserController extends Controller
      */
     public function showUserDashboard()
     {
-        // Ensure the user is not an admin
-        if (Auth::user()->role != 'admin') {
-            return view('userDashboard');
-        } else {
-            return redirect('/login');
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is not an admin
+            if (Auth::user()->role != 'admin') {
+                return view('userDashboard');
+            } else {
+                return view('adminDashboard');
+            }
         }
+        return view('login');
     }
 
     /**
