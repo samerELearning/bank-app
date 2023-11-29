@@ -67,7 +67,7 @@ class UserController extends Controller
                 return redirect('/user/dashboard');
             }
         }
-        return view('login');
+        return redirect('/');
     }
 
     /**
@@ -117,7 +117,7 @@ class UserController extends Controller
                 return redirect('admin/dashboard');
             }
         }
-        return view('login');
+        return redirect('/');
     }
 
     /**
@@ -135,7 +135,7 @@ class UserController extends Controller
                 return redirect('user/dashboard');
             }
         }
-        return view('login');
+        return redirect('/');
     }
 
     /**
