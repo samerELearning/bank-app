@@ -114,7 +114,7 @@ class UserController extends Controller
             if (Auth::user()->role != 'admin') {
                 return view('userDashboard');
             } else {
-                return view('adminDashboard');
+                return redirect('admin/dashboard');
             }
         }
         return view('login');
@@ -132,7 +132,7 @@ class UserController extends Controller
             if (Auth::user()->role == 'admin') {
                 return view('adminDashboard');
             } else {
-                return redirect('/login');
+                return redirect('user/dashboard');
             }
         }
         return view('login');
