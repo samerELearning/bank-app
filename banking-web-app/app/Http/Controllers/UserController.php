@@ -112,7 +112,7 @@ class UserController extends Controller
         if (Auth::check()) { // if user is logged in
             // Ensure the user is not an admin
             if (Auth::user()->role != 'admin') {
-                return view('userDashboard');
+                return redirect('user/dashboard');
             } else {
                 return redirect('admin/dashboard');
             }
