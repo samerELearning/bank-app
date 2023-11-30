@@ -40,6 +40,19 @@
             width: 80%;
             margin: 0 auto;
         }
+        .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .dashboard-button:hover {
+            background-color: darkgreen;
+        }
     </style>
 </head>
 <body>
