@@ -38,5 +38,5 @@ Route::get('/user/dashboard', 'App\Http\Controllers\UserController@showUserDashb
 Route::get('/admin/dashboard', 'App\Http\Controllers\UserController@showAdminDashboard')->name('admin.dashboard');
 
 //Client operations routes
-
+Route::get('/user/create-bank-account', 'App\Http\Controllers\UserController@showCreateBankAccountForm')->name('create.bank.account');
 //Admin operations routes
