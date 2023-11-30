@@ -21,7 +21,6 @@
         a {
             color: green;
             text-decoration: none;
-            
         }
         a:hover {
             color: black;
