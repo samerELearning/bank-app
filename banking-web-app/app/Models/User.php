@@ -22,4 +22,13 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Get the accounts for the user.
+     */
+    public function accounts()
+    {
+        return $this->hasMany('App\Models\Account');
+    }
 }
+?>
