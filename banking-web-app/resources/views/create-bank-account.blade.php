@@ -35,9 +35,23 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .dashboard-button:hover {
+            background-color: darkgreen;
+        }
     </style>
 </head>
 <body>
+    <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
     <h1>Create a New Bank Account</h1>
     <form action="/user/create-bank-account" method="post">
         @csrf
