@@ -102,6 +102,7 @@ class UserController extends Controller
         ]);
     }
 
+
     /**
      * Show the user dashboard.
      *
@@ -112,7 +113,25 @@ class UserController extends Controller
         if (Auth::check()) { // if user is logged in
             // Ensure the user is not an admin
             if (Auth::user()->role != 'admin') {
-                return redirect('user/dashboard');
+                return view('userDashboard');
+            } else {
+                return redirect('admin/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
+     * Show the Create Bank Account form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCreateBankAccountForm()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is not an admin
+            if (Auth::user()->role != 'admin') {
+                return view('create-bank-account');
             } else {
                 return redirect('admin/dashboard');
             }
