@@ -29,9 +29,21 @@
             background-color: #4CAF50;
             color: white;
         }
+        p {
+            color: #333;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            width: 80%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
+    <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
     @if ($accounts->count())
         <h1>Your Accounts</h1>
         <table>
@@ -62,7 +74,6 @@
                 @endforeach
             </tbody>
         </table>
-
     {{ $accounts->links() }}
     @else
     <p>You have no bank accounts.</p>
