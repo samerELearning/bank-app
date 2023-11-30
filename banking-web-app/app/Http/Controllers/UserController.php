@@ -149,7 +149,8 @@ class UserController extends Controller
         if (Auth::check()) { // if user is logged in
             // Ensure the user is not an admin
             if (Auth::user()->role != 'admin') {
-                return view('bank-accounts');
+                $accounts = Auth::user()->accounts()->paginate(10);
+                return view('bank-accounts', ['accounts' => $accounts]);
             } else {
                 return redirect('admin/dashboard');
             }
