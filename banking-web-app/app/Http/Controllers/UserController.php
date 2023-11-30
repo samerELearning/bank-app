@@ -158,6 +158,7 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    
     /**
      * Show the admin dashboard.
      *

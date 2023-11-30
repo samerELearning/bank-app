@@ -2,6 +2,34 @@
 <html>
 <head>
     <title>Accounts</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: blue;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     @if ($accounts->count())
@@ -23,7 +51,13 @@
                         <td>{{ $account->balance }}</td>
                         <td>{{ $account->currency }}</td>
                         <td>{{ $account->created_at }}</td>
-                        <td>{{ $account->status }}</td>
+                        <td style="color: 
+                            {{ $account->status == 'pending' ? '#DAA520' : 
+                            ($account->status == 'active' ? '#32CD32' : 
+                            ($account->status == 'blocked' ? 'red' : 'black')) 
+                            }}">
+                            {{ $account->status }}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
