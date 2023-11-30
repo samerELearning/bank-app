@@ -140,6 +140,24 @@ class UserController extends Controller
     }
 
     /**
+     * Show Bank Accounts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showBankAccounts()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is not an admin
+            if (Auth::user()->role != 'admin') {
+                return view('bank-accounts');
+            } else {
+                return redirect('admin/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
      * Show the admin dashboard.
      *
      * @return \Illuminate\Http\Response

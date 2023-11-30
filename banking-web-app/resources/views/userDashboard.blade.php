@@ -42,7 +42,7 @@
     <h1>Welcome {{ Auth::user()->name}}</h1>
     <ul>
         <li><a href="{{ route('create.bank.account') }}">Create Bank Account</a></li>
-        <li><a href="">My Bank Accounts</a></li>
+        <li><a href="{{ route('show.bank.accounts') }}">My Bank Accounts</a></li>
         <li><a href="">My Transactions</a></li>
         <li><a href="">Withdraw</a></li>
         <li><a href="">Deposit</a></li>
