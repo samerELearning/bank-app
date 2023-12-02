@@ -57,6 +57,17 @@
 </head>
 <body>
     <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
+    <form action="{{ route('show.transaction.history') }}" method="get">
+        <input type="text" name="account_number" placeholder="Account Number">
+        <input type="date" name="timestamp" placeholder="Timestamp">
+        <select name="transaction_type">
+            <option value="">All</option>
+            <option value="deposit">Deposit</option>
+            <option value="withdraw">Withdraw</option>
+            <option value="transfer">Transfer</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
     @if ($transactions->count())
         <h1>Your Transactions</h1>
         <table>
