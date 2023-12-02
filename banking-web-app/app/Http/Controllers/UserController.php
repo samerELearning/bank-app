@@ -158,6 +158,25 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Show the Transaction history list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showTransactionHistory()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is not an admin
+            if (Auth::user()->role != 'admin') {
+                $transactions = Auth::user()->transactions()->paginate(10);
+                return view('transactions', ['transactions' => $transactions]);
+            } else {
+                return redirect('admin/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
 
     /**
      * Show the admin dashboard.
