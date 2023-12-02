@@ -53,11 +53,16 @@
         .dashboard-button:hover {
             background-color: darkgreen;
         }
+        .filter-form {
+            position: absolute;
+            top: 340px;
+            left: 155px;
+        }
     </style>
 </head>
 <body>
     <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
-    <form action="{{ route('show.transaction.history') }}" method="get">
+    <form class="filter-form" action="{{ route('show.transaction.history') }}" method="get">
         <input type="text" name="account_number" placeholder="Account Number">
         <input type="date" name="timestamp" placeholder="Timestamp">
         <select name="transaction_type">
