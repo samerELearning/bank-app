@@ -140,7 +140,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show Bank Accounts.
+     * Show the Bank Accounts list.
      *
      * @return \Illuminate\Http\Response
      */
