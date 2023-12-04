@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class UserController extends Controller
@@ -163,12 +164,32 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showTransactionHistory()
+    public function showTransactionHistory(Request $request)
     {
         if (Auth::check()) { // if user is logged in
             // Ensure the user is not an admin
             if (Auth::user()->role != 'admin') {
-                $transactions = Auth::user()->transactions()->paginate(10);
+                $query = Transaction::query();
+
+                if ($request->filled('account_number')) {
+                    $account_number = $request->input('account_number');
+                    $query->where(function ($query) use ($account_number) {
+                        $query->whereHas('fromAccount', function ($query) use ($account_number) {
+                            $query->where('account_number', $account_number);
+                        })->orWhereHas('toAccount', function ($query) use ($account_number) {
+                            $query->where('account_number', $account_number);
+                        });
+                    });
+                
+                }
+                if ($request->filled('timestamp')) {
+                    $query->whereDate('created_at', $request->input('timestamp'));
+                }
+                if ($request->filled('transaction_type')) {
+                    $query->where('transaction_type', $request->input('transaction_type'));
+                }
+
+                $transactions = $query->paginate(10);
                 return view('transactions', ['transactions' => $transactions]);
             } else {
                 return redirect('admin/dashboard');
