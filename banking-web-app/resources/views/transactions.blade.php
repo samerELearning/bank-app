@@ -55,8 +55,36 @@
         }
         .filter-form {
             position: absolute;
-            top: 340px;
-            left: 155px;
+            top: 3%;
+            left: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            display: flex; /* Add this */
+            align-items: center; /* Add this */
+            gap: 10px; /* Add this */
+        }
+        .filter-form input, .filter-form select {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            flex: 1; /* Add this */
+        }
+        .filter-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            flex-shrink: 0; /* Add this */
+        }
+        .filter-form button:hover {
+            background-color: darkgreen;
+        }
         }
     </style>
 </head>
