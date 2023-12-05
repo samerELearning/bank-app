@@ -45,7 +45,7 @@
         <li><a href="{{ route('show.bank.accounts') }}">My Bank Accounts</a></li>
         <li><a href="{{ route('show.transaction.history') }}">My Transactions</a></li>
         <li><a href="{{ route('show.withdraw.form') }}">Withdraw</a></li>
-        <li><a href="">Deposit</a></li>
+        <li><a href="{{ route('show.deposit.form') }}">Deposit</a></li>
         <li><a href="">Transfer</a></li>
         <li>
             <form method="POST" action="{{ route('logout') }}">
