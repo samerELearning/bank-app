@@ -180,7 +180,6 @@ class UserController extends Controller
                             $query->where('account_number', $account_number);
                         });
                     });
-                
                 }
                 if ($request->filled('timestamp')) {
                     $query->whereDate('created_at', $request->input('timestamp'));
@@ -191,6 +190,24 @@ class UserController extends Controller
 
                 $transactions = $query->paginate(10);
                 return view('transactions', ['transactions' => $transactions]);
+            } else {
+                return redirect('admin/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
+     * Show the Withdraw form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showWithdrawForm()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is not an admin
+            if (Auth::user()->role != 'admin') {
+                return view('withdraw');
             } else {
                 return redirect('admin/dashboard');
             }
