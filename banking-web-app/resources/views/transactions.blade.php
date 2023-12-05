@@ -61,9 +61,9 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            display: flex; /* Add this */
-            align-items: center; /* Add this */
-            gap: 10px; /* Add this */
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .filter-form input, .filter-form select {
             margin-bottom: 10px;
@@ -71,7 +71,7 @@
             width: 100%;
             border: 1px solid #ddd;
             border-radius: 5px;
-            flex: 1; /* Add this */
+            flex: 1;
         }
         .filter-form button {
             padding: 10px 20px;
@@ -80,7 +80,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            flex-shrink: 0; /* Add this */
+            flex-shrink: 0;
         }
         .filter-form button:hover {
             background-color: darkgreen;
