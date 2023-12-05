@@ -61,14 +61,14 @@
 </head>
 <body>
     <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
-    <h1>Withdraw</h1>
-    <form action="{{ route('show.withdraw.form') }}" method="get">
+    <h1>Deposit</h1>
+    <form action="{{ route('show.deposit.form') }}" method="get">
         @csrf
         <label for="account_number">Account Number:</label><br>
         <input type="text" id="account_number" name="account_number"><br>
         <label for="amount">Amount:</label><br>
-        <input type="number" id="amount" name="amount" min="1" step="any"><br>
-        <input type="submit" value="Withdraw">
+        <input type="number" id="amount" name="amount" min="0.01" step="10"><br>
+        <input type="submit" value="Deposit">
     </form>
 </body>
 </html>
