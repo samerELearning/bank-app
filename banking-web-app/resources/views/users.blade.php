@@ -94,7 +94,7 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <td><a href="">{{ $user->name }}</a></td>
+                        <td><a href="{{ route('show.user.accounts') }}">{{ $user->name }}</a></td>
                         <td>{{ $user->role }}</td>
                         <td style="color: 
                             {{ $user->status == 'pending' ? '#DAA520' : 
