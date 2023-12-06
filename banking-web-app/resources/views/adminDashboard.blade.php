@@ -43,7 +43,7 @@
     <ul>
         <li><a href="{{ route('show.users') }}">Clients</a></li>
         <li><a href="{{ route('show.requests') }}">Requests</a></li>
-        <li><a href="">Withdraw</a></li>
+        <li><a href="{{ route('show.admin.withdraw.form') }}">Withdraw</a></li>
         <li><a href="">Deposit</a></li>
         <li><a href="">Transfer</a></li>
         <li>
