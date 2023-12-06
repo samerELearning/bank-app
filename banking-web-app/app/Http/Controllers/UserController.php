@@ -291,6 +291,25 @@ class UserController extends Controller
     }
 
     /**
+     * Show the user Accounts list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserAccounts($id)
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is an admin
+            if (Auth::user()->role == 'admin') {
+                $accounts = User::find($id)->accounts()->paginate(10);
+                return view('user-accounts', ['accounts' => $accounts]);
+            } else {
+                return redirect('user/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
      * Show the requests list.
      *
      * @return \Illuminate\Http\Response

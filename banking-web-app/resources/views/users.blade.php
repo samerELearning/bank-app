@@ -94,7 +94,7 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->name }}</td>
+                        <td><a href="">{{ $user->name }}</a></td>
                         <td>{{ $user->role }}</td>
                         <td style="color: 
                             {{ $user->status == 'pending' ? '#DAA520' : 
