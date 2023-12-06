@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ $user->name }}'s Accounts</title>
+    <title>{{ $user->name }}'s Transactions</title>
     <style>
         body {
             display: flex;
@@ -110,14 +110,14 @@
         .reject-button:hover {
             background-color: darkred;
         }
-        .next-button {
+        .back-button {
             border: none;
             padding: 5px 10px;
             text-decoration: none;
             cursor: pointer;
-            float: right;
+            float: left;
         }
-        .next-button:hover {
+        .back-button:hover {
             background-color: #ddd;
         }
     </style>
@@ -125,61 +125,33 @@
 <body>
     <a href="{{ route('admin.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
     <a href="{{ route('show.users') }}" class="users-button">Back to Users</a>
-    @if ($accounts->count())
-        <h1>{{ $user->name }}'s Accounts&nbsp;&nbsp;<a href="{{ route('show.user.transactions', $user->id) }}" class="next-button">></a></h1>
+    @if ($transactions->count())
+        <h1><a href="{{ route('show.user.accounts', $user->id) }}" class="back-button"><</a>&nbsp;&nbsp;{{ $user->name }}'s Transactions</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Account Number</th>
-                    <th>Balance</th>
-                    <th>Currency</th>
-                    <th>Created At</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>Type</th>
+                    <th>From Account</th>
+                    <th>To Account</th>
+                    <th>Amount</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($accounts as $account)
+                @foreach ($transactions as $transaction)
                     <tr>
-                        <td>{{ $account->account_number }}</td>
-                        <td>{{ $account->balance }}</td>
-                        <td>{{ $account->currency }}</td>
-                        <td>{{ $account->created_at }}</td>
-                        <td style="color: 
-                            {{ $account->status == 'pending' ? '#DAA520' : 
-                            ($account->status == 'active' ? '#32CD32' : 
-                            ($account->status == 'blocked' ? 'red' : 'black')) 
-                            }}">
-                            {{ $account->status }}
-                        </td>
-                        <td>@if ($account->status == 'active')
-                                <form action="" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="submit" value="Block" class="block-button">
-                                </form>
-                            @elseif ($account->status == 'blocked')
-                                <form action="" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="submit" value="Unblock" class="unblock-button">
-                                </form>
-                            @else
-                                <form action="" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="submit" value="Approve" class="approve-button">
-                                    <input type="submit" value="Reject" class="reject-button">
-                                </form>
-                            @endif
-                        </td> 
+                        <td>{{ $transaction->transaction_type }}</td>
+                        <td>{{ $transaction->fromAccount ? $transaction->fromAccount->account_number : 'N/A' }}</td>
+                        <td>{{ $transaction->toAccount ? $transaction->toAccount->account_number : 'N/A' }}</td>
+                        <td>{{ $transaction->amount }}</td>
+                        <td>{{ $transaction->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-    {{ $accounts->links() }}
+    {{ $transactions->links() }}
     @else
-    <p>{{ $user->name }} has no accounts.</p>
+    <p>{{ $user->name }} hasn't made any transactions.</p>
     @endif
 </body>
 </html>
