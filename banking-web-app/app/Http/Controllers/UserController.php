@@ -311,6 +311,26 @@ class UserController extends Controller
     }
 
     /**
+     * Show the user Transactions list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserTransactions($id)
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is an admin
+            if (Auth::user()->role == 'admin') {
+                $transactions = User::find($id)->transactions()->paginate(10);
+                $user = User::find($id);
+                return view('user-transactions', ['transactions' => $transactions, 'user' => $user]);
+            } else {
+                return redirect('user/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
      * Show the requests list.
      *
      * @return \Illuminate\Http\Response
