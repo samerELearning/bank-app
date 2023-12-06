@@ -49,3 +49,4 @@ Route::get('/user/transfer', 'App\Http\Controllers\UserController@showTransferFo
 Route::get('/admin/show-users', 'App\Http\Controllers\UserController@showUsers')->name('show.users');
 Route::get('/admin/show-requests', 'App\Http\Controllers\UserController@showRequests')->name('show.requests');
 Route::get('/admin/withdraw', 'App\Http\Controllers\UserController@showAdminWithdrawForm')->name('show.admin.withdraw.form');
+Route::get('/admin/deposit', 'App\Http\Controllers\UserController@showAdminDepositForm')->name('show.admin.deposit.form');
