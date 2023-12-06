@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Users</title>
+    <title>{{ Auth::user()->name}}'s Accounts</title>
     <style>
         body {
             display: flex;
@@ -75,46 +75,77 @@
         .unblock-button:hover {
             background-color: darkgreen;
         }
+        .approve-button {
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .approve-button:hover {
+            background-color: darkgreen;
+        }
+        .reject-button {
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .reject-button:hover {
+            background-color: darkred;
+        }
     </style>
 </head>
 <body>
     <a href="{{ route('admin.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
-    @if ($users->count())
-        <h1>Users</h1>
+    @if ($accounts->count())
+        <h1>{{ $user->name }}'s Accounts</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Role</th>
+                    <th>Account Number</th>
+                    <th>Balance</th>
+                    <th>Currency</th>
+                    <th>Created At</th>
                     <th>Status</th>
-                    <th>Registered on</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($accounts as $account)
                     <tr>
-                        <td><a href="{{ route('show.user.accounts', $user->id) }}">{{ $user->name }}</a></td>
-                        <td>{{ $user->role }}</td>
+                        <td>{{ $account->account_number }}</td>
+                        <td>{{ $account->balance }}</td>
+                        <td>{{ $account->currency }}</td>
+                        <td>{{ $account->created_at }}</td>
                         <td style="color: 
-                            {{ $user->status == 'pending' ? '#DAA520' : 
-                            ($user->status == 'active' ? '#32CD32' : 
-                            ($user->status == 'inactive' ? 'red' : 'black')) 
+                            {{ $account->status == 'pending' ? '#DAA520' : 
+                            ($account->status == 'active' ? '#32CD32' : 
+                            ($account->status == 'blocked' ? 'red' : 'black')) 
                             }}">
-                            {{ $user->status }}
+                            {{ $account->status }}
                         </td>
-                        <td>{{ $user->created_at }}</td>
-                        <td>@if ($user->status == 'active')
+                        <td>@if ($account->status == 'active')
                                 <form action="" method="post">
                                     @csrf
                                     @method('PUT')
                                     <input type="submit" value="Block" class="block-button">
                                 </form>
-                            @elseif ($user->status == 'inactive')
+                            @elseif ($account->status == 'blocked')
                                 <form action="" method="post">
                                     @csrf
                                     @method('PUT')
                                     <input type="submit" value="Unblock" class="unblock-button">
+                                </form>
+                            @else
+                                <form action="" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="submit" value="Approve" class="approve-button">
+                                    <input type="submit" value="Reject" class="reject-button">
                                 </form>
                             @endif
                         </td> 
@@ -122,9 +153,9 @@
                 @endforeach
             </tbody>
         </table>
-    {{ $users->links() }}
+    {{ $accounts->links() }}
     @else
-    <p>There are no users.</p>
+    <p>{{ $user->name }} has no accounts.</p>
     @endif
 </body>
 </html>

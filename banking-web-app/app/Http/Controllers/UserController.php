@@ -301,7 +301,8 @@ class UserController extends Controller
             // Ensure the user is an admin
             if (Auth::user()->role == 'admin') {
                 $accounts = User::find($id)->accounts()->paginate(10);
-                return view('user-accounts', ['accounts' => $accounts]);
+                $user = User::find($id);
+                return view('user-accounts', ['accounts' => $accounts, 'user' => $user]);
             } else {
                 return redirect('user/dashboard');
             }
