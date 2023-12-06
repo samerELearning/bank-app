@@ -53,6 +53,28 @@
         .dashboard-button:hover {
             background-color: darkgreen;
         }
+        .approve-button {
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .approve-button:hover {
+            background-color: darkgreen;
+        }
+        .reject-button {
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .reject-button:hover {
+            background-color: darkred;
+        }
     </style>
 </head>
 <body>
@@ -83,19 +105,8 @@
                                 <form action="" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <input type="submit" value="Approve"
-                                           style="background-color:#4CAF50;
-                                                  color: white;
-                                                  border: none;
-                                                  padding: 5px 10px;
-                                                  cursor: pointer;">
-                                    <input type="submit" value="Reject"
-                                           style="background-color:red;
-                                                  color: white;
-                                                  border: none;
-                                                  padding: 5px 10px;
-                                                  cursor: pointer;">
-                                    
+                                    <input type="submit" value="Approve" class="approve-button">
+                                    <input type="submit" value="Reject" class="reject-button">
                                 </form>
                             </td>
                         </tr>

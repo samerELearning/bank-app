@@ -53,6 +53,28 @@
         .dashboard-button:hover {
             background-color: darkgreen;
         }
+        .block-button {
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .block-button:hover {
+            background-color: darkred;
+        }
+        .unblock-button {
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .unblock-button:hover {
+            background-color: darkgreen;
+        }
     </style>
 </head>
 <body>
@@ -86,23 +108,13 @@
                                 <form action="" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <input type="submit" value="Block"
-                                           style="background-color:red;
-                                                  color: white;
-                                                  border: none;
-                                                  padding: 5px 10px;
-                                                  cursor: pointer;">
+                                    <input type="submit" value="Block" class="block-button">
                                 </form>
                             @elseif ($user->status == 'inactive')
                                 <form action="" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <input type="submit" value="Unblock"
-                                           style="background-color:#4CAF50;
-                                                  color: white;
-                                                  border: none;
-                                                  padding: 5px 10px;
-                                                  cursor: pointer;">
+                                    <input type="submit" value="Unblock" class="unblock-button">
                                 </form>
                             @endif
                         </td> 
