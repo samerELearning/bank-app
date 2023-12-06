@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Transaction;
+use App\Models\Account;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class UserController extends Controller
@@ -282,6 +283,25 @@ class UserController extends Controller
             if (Auth::user()->role == 'admin') {
                 $users = User::paginate(10);
                 return view('users', ['users' => $users]);
+            } else {
+                return redirect('user/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
+     * Show the requests list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRequests()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is an admin
+            if (Auth::user()->role == 'admin') {
+                $accounts = Account::paginate(10);
+                return view('requests', ['accounts' => $accounts]);
             } else {
                 return redirect('user/dashboard');
             }
