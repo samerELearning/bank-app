@@ -89,6 +89,13 @@
                                                   border: none;
                                                   padding: 5px 10px;
                                                   cursor: pointer;">
+                                    <input type="submit" value="Reject"
+                                           style="background-color:red;
+                                                  color: white;
+                                                  border: none;
+                                                  padding: 5px 10px;
+                                                  cursor: pointer;">
+                                    
                                 </form>
                             </td>
                         </tr>
