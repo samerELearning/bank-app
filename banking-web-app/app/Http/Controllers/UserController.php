@@ -251,7 +251,7 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    
+
     /**
      * Show the admin dashboard.
      *
@@ -263,6 +263,25 @@ class UserController extends Controller
             // Ensure the user is an admin
             if (Auth::user()->role == 'admin') {
                 return view('adminDashboard');
+            } else {
+                return redirect('user/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
+     * Show the Users list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUsers()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is an admin
+            if (Auth::user()->role == 'admin') {
+                $users = User::paginate(10);
+                return view('users', ['users' => $users]);
             } else {
                 return redirect('user/dashboard');
             }
