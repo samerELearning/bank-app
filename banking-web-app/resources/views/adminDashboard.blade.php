@@ -41,7 +41,7 @@
 <body>
     <h1>Welcome {{ Auth::user()->name}}</h1>
     <ul>
-        <li><a href="">Clients</a></li>
+        <li><a href="{{ route('show.users') }}">Clients</a></li>
         <li><a href="">Requests</a></li>
         <li><a href="">Withdraw</a></li>
         <li><a href="">Deposit</a></li>
