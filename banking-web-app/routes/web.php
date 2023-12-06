@@ -47,3 +47,4 @@ Route::get('/user/transfer', 'App\Http\Controllers\UserController@showTransferFo
 
 //Admin operations routes
 Route::get('/admin/show-users', 'App\Http\Controllers\UserController@showUsers')->name('show.users');
+Route::get('/admin/show-requests', 'App\Http\Controllers\UserController@showRequests')->name('show.requests');
