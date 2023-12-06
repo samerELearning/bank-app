@@ -53,6 +53,19 @@
         .dashboard-button:hover {
             background-color: darkgreen;
         }
+        .users-button {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .users-button:hover {
+            background-color: darkgreen;
+        }
         .block-button {
             color: white;
             background-color: red;
@@ -97,12 +110,23 @@
         .reject-button:hover {
             background-color: darkred;
         }
+        .next-button {
+            border: none;
+            padding: 5px 10px;
+            text-decoration: none;
+            cursor: pointer;
+            float: right;
+        }
+        .next-button:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
     <a href="{{ route('admin.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
+    <a href="{{ route('show.users') }}" class="users-button">Back to Users</a>
     @if ($accounts->count())
-        <h1>{{ $user->name }}'s Accounts</h1>
+        <h1>{{ $user->name }}'s Accounts&nbsp;&nbsp;<a href="" class="next-button">></a></h1>
         <table>
             <thead>
                 <tr>
