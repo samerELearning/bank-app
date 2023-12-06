@@ -65,7 +65,7 @@
                     <th>Account Number</th>
                     <th>Balance</th>
                     <th>Currency</th>
-                    <th>Created At</th>
+                    <th>Requested at</th>
                     <th>Client</th>
                     <th>Action</th>
                 </tr>
