@@ -328,6 +328,24 @@ class UserController extends Controller
     }
 
     /**
+     * Show the admin Deposit form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdminDepositForm()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is not an admin
+            if (Auth::user()->role == 'admin') {
+                return view('admin-deposit');
+            } else {
+                return redirect('user/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
      * Log the user out of the application.
      *
      * @return \Illuminate\Http\Response
