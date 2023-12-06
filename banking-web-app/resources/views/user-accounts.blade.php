@@ -126,7 +126,7 @@
     <a href="{{ route('admin.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
     <a href="{{ route('show.users') }}" class="users-button">Back to Users</a>
     @if ($accounts->count())
-        <h1>{{ $user->name }}'s Accounts&nbsp;&nbsp;<a href="" class="next-button">></a></h1>
+        <h1>{{ $user->name }}'s Accounts&nbsp;&nbsp;<a href="{{ route('show.user.transactions') }}" class="next-button">></a></h1>
         <table>
             <thead>
                 <tr>
