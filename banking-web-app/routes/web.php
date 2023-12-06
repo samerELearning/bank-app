@@ -44,4 +44,6 @@ Route::get('/user/show-transaction-history', 'App\Http\Controllers\UserControlle
 Route::get('/user/withdraw', 'App\Http\Controllers\UserController@showWithdrawForm')->name('show.withdraw.form');
 Route::get('/user/deposit', 'App\Http\Controllers\UserController@showDepositForm')->name('show.deposit.form');
 Route::get('/user/transfer', 'App\Http\Controllers\UserController@showTransferForm')->name('show.transfer.form');
+
 //Admin operations routes
+Route::get('/admin/show-users', 'App\Http\Controllers\UserController@showUsers')->name('show.users');
