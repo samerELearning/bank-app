@@ -66,7 +66,7 @@
                     <th>Balance</th>
                     <th>Currency</th>
                     <th>Created At</th>
-                    <th>Status</th>
+                    <th>Client</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -78,13 +78,7 @@
                             <td>{{ $account->balance }}</td>
                             <td>{{ $account->currency }}</td>
                             <td>{{ $account->created_at }}</td>
-                            <td style="color: 
-                                {{ $account->status == 'pending' ? '#DAA520' : 
-                                ($account->status == 'active' ? '#32CD32' : 
-                                ($account->status == 'blocked' ? 'red' : 'black')) 
-                                }}">
-                                {{ $account->status }}
-                            </td>
+                            <td>{{ $account->user->name }}</td>
                             <td>
                                 <form action="" method="post">
                                     @csrf
