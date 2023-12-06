@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Withdraw</title>
+    <title>Deposit</title>
     <style>
         body {
             display: flex;

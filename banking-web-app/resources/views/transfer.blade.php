@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Withdraw</title>
+    <title>Transfer</title>
     <style>
         body {
             display: flex;
