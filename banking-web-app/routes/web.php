@@ -50,3 +50,4 @@ Route::get('/admin/show-users', 'App\Http\Controllers\UserController@showUsers')
 Route::get('/admin/show-requests', 'App\Http\Controllers\UserController@showRequests')->name('show.requests');
 Route::get('/admin/withdraw', 'App\Http\Controllers\UserController@showAdminWithdrawForm')->name('show.admin.withdraw.form');
 Route::get('/admin/deposit', 'App\Http\Controllers\UserController@showAdminDepositForm')->name('show.admin.deposit.form');
+Route::get('/admin/transfer', 'App\Http\Controllers\UserController@showAdminTransferForm')->name('show.admin.transfer.form');

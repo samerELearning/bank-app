@@ -41,11 +41,11 @@
 <body>
     <h1>Welcome {{ Auth::user()->name}}</h1>
     <ul>
-        <li><a href="{{ route('show.users') }}">Clients</a></li>
+        <li><a href="{{ route('show.users') }}">Users</a></li>
         <li><a href="{{ route('show.requests') }}">Requests</a></li>
         <li><a href="{{ route('show.admin.withdraw.form') }}">Withdraw</a></li>
         <li><a href="{{ route('show.admin.deposit.form') }}">Deposit</a></li>
-        <li><a href="">Transfer</a></li>
+        <li><a href="{{ route('show.admin.transfer.form') }}">Transfer</a></li>
         <li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
