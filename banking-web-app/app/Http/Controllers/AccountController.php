@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Transaction;
 use App\Models\Account;
+use Illuminate\Support\Facades\Validator;
+
 
 class AccountController extends Controller
 {
@@ -46,7 +48,7 @@ class AccountController extends Controller
     public function createUserAccountByAdmin(Request $request)
     {
         $request->validate([
-            'name' => 'required|exists:users,name',
+            'name' => 'required|',
             'currency' => 'required|in:USD,EUR,LBP',
         ]);
     
