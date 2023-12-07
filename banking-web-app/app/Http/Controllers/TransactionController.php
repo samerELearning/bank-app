@@ -57,7 +57,7 @@ class TransactionController extends Controller
         $transaction->from_account_id = $account->id;
         $transaction->save();
 
-        return redirect('show.transaction.history')->with('success', 'Withdrawal successful.');
+        return redirect('/user/show-transaction-history')->with('success', 'Withdrawal successful.');
     }
 
     /**

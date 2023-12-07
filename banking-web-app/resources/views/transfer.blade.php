@@ -63,8 +63,9 @@
 </head>
 <body>
     <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
+
     <h1>Transfer</h1>
-    <form action="{{ route('show.transfer.form') }}" method="get">
+    <form action="/user/transfer" method="post">
         @csrf
         <label for="from_account_number">From Account Number:</label><br>
         <input type="text" id="from_account_number" name="from_account_number"><br>
