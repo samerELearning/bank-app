@@ -59,12 +59,30 @@
         .dashboard-button:hover {
             background-color: darkgreen;
         }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
     </style>
 </head>
 <body>
     <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
+    <!-- Display the error message -->
+    @if (session('error'))
+        <div class="alert alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
     <h1>Create a New Bank Account</h1>
-    <form action="/user/create-bank-account" method="post">
+    <form action="/admin/create-bank-account" method="post">
         @csrf
         <label for="name">Client:</label><br>
         <input type="text" id="name" name="name"><br>
