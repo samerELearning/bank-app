@@ -172,4 +172,47 @@ class TransactionController extends Controller
 
         return redirect('/user/show-transaction-history')->with('success', 'Transfer successful.');
     }
+
+    /**
+     * Perform a withdrawal transaction for admins.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function adminWithdraw(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'account_number' => 'required|exists:accounts,account_number',
+            'amount' => 'required|numeric|min:0',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->with(['error' => 'Account not found.']);
+        }
+
+        $account = Account::where('account_number', $request->account_number)
+                  ->first();
+
+        if (!$account) {
+            return redirect()->back()->with(['error' => 'Account not found.']);
+        }
+        
+        if ($account->balance < $request->amount) {
+            return redirect()->back()->with(['error' => 'Insufficient balance.']);
+        }
+
+        $account->balance -= $request->amount;
+        $account->save();
+
+        // Create a new transaction record
+        $transaction = new Transaction;
+        $transaction->amount = $request->amount;
+        $transaction->transaction_type = 'withdraw';
+        $transaction->user_id = $account->user_id;
+        $transaction->from_account_id = $account->id;
+        $transaction->save();
+
+        return redirect('/admin/show-transaction-history')->with('success', 'Withdrawal successful.');
+    }
 }
