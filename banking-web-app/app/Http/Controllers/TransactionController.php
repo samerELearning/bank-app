@@ -19,10 +19,6 @@ class TransactionController extends Controller
      */
     public function clientWithdraw(Request $request)
     {
-        /*$request->validate([
-            'account_number' => 'required|exists:accounts,account_number',
-            'amount' => 'required|numeric|min:0',
-        ]);*/
 
         $validator = Validator::make($request->all(), [
             'account_number' => 'required|exists:accounts,account_number',
@@ -62,5 +58,51 @@ class TransactionController extends Controller
         $transaction->save();
 
         return redirect('show.transaction.history')->with('success', 'Withdrawal successful.');
+    }
+
+    /**
+     * Perform a deposit transaction for clients.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function clientDeposit(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'account_number' => 'required|exists:accounts,account_number',
+            'amount' => 'required|numeric|min:0',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->with(['error' => 'Account not found.']);
+        }
+
+        $account = Account::where('account_number', $request->account_number)
+                  ->where('user_id', Auth::id())
+                  ->first();
+
+        if (!$account) {
+            return redirect()->back()->with(['error' => 'Account not found.']);
+        }
+        if ($account->status == 'pending') {
+            return redirect()->back()->with(['error' => 'This account is still pending approval.']);
+        }
+        if ($account->status == 'blocked') {
+            return redirect()->back()->with(['error' => 'This account has been blocked.']);
+        }
+
+        $account->balance += $request->amount;
+        $account->save();
+
+        // Create a new transaction record
+        $transaction = new Transaction;
+        $transaction->amount = $request->amount;
+        $transaction->transaction_type = 'deposit';
+        $transaction->user_id = $account->user_id;
+        $transaction->to_account_id = $account->id;
+        $transaction->save();
+
+        return redirect('show.transaction.history')->with('success', 'Deposit successful.');
     }
 }
