@@ -64,3 +64,4 @@ Route::post('/user/transfer', 'App\Http\Controllers\TransactionController@client
 //Account operation routes for Admin
 Route::post('/admin/withdraw', 'App\Http\Controllers\TransactionController@adminWithdraw');
 Route::post('/admin/deposit', 'App\Http\Controllers\TransactionController@adminDeposit');
+Route::post('/admin/transfer', 'App\Http\Controllers\TransactionController@adminTransfer');
