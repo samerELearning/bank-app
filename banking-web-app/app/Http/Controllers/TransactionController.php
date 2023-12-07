@@ -213,8 +213,47 @@ class TransactionController extends Controller
         $transaction->from_account_id = $account->id;
         $transaction->save();
 
-        //return redirect('/admin/show-user-transactions')->with('success', 'Withdrawal successful.');
         return redirect()->route('show.user.transactions', ['user' => $account->user_id])->with('success', 
                                  'Withdrawal successful.');
+    }
+
+    /**
+     * Perform a deposit transaction for admins.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function adminDeposit(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'account_number' => 'required|exists:accounts,account_number',
+            'amount' => 'required|numeric|min:0',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->with(['error' => 'Account not found.']);
+        }
+
+        $account = Account::where('account_number', $request->account_number)
+                  ->first();
+
+        if (!$account) {
+            return redirect()->back()->with(['error' => 'Account not found.']);
+        }
+
+        $account->balance += $request->amount;
+        $account->save();
+
+        // Create a new transaction record
+        $transaction = new Transaction;
+        $transaction->amount = $request->amount;
+        $transaction->transaction_type = 'deposit';
+        $transaction->user_id = $account->user_id;
+        $transaction->to_account_id = $account->id;
+        $transaction->save();
+
+        return redirect()->route('show.user.transactions', ['user' => $account->user_id])->with('success', 
+                                 'Deposit successful.');
     }
 }
