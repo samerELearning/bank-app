@@ -103,6 +103,6 @@ class TransactionController extends Controller
         $transaction->to_account_id = $account->id;
         $transaction->save();
 
-        return redirect('show.transaction.history')->with('success', 'Deposit successful.');
+        return redirect('/user/show-transaction-history')->with('success', 'Deposit successful.');
     }
 }

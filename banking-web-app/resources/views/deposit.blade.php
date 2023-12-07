@@ -87,7 +87,7 @@
         <label for="account_number">Account Number:</label><br>
         <input type="text" id="account_number" name="account_number"><br>
         <label for="amount">Amount:</label><br>
-        <input type="number" id="amount" name="amount" min="0.01" step="10"><br>
+        <input type="number" id="amount" name="amount" min="1" step="any"><br>
         <input type="submit" value="Deposit">
     </form>
 </body>
