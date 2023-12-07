@@ -54,3 +54,6 @@ Route::get('/admin/withdraw', 'App\Http\Controllers\UserController@showAdminWith
 Route::get('/admin/deposit', 'App\Http\Controllers\UserController@showAdminDepositForm')->name('show.admin.deposit.form');
 Route::get('/admin/transfer', 'App\Http\Controllers\UserController@showAdminTransferForm')->name('show.admin.transfer.form');
 Route::get('/admin/create-bank-account', 'App\Http\Controllers\UserController@showAdminCreateAccountForm')->name('show.admin.create.account.form');
+
+//Account operations routes for Client
+Route::post('/user/create-bank-account', 'App\Http\Controllers\AccountController@createUserAccount');
