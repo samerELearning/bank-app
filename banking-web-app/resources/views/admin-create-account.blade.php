@@ -66,8 +66,8 @@
     <h1>Create a New Bank Account</h1>
     <form action="/user/create-bank-account" method="post">
         @csrf
-        <label for="account_number">Account number:</label><br>
-        <input type="text" id="account_number" name="account_number"><br>
+        <label for="name">Client:</label><br>
+        <input type="text" id="name" name="name"><br>
         <label for="currency">Currency:</label><br>
         <select name="currency" id="currency">
             <option value="USD">USD</option>
