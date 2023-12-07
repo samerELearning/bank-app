@@ -424,6 +424,24 @@ class UserController extends Controller
     }
 
     /**
+     * Show the admin Create Account form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAdminCreateAccountForm()
+    {
+        if (Auth::check()) { // if user is logged in
+            // Ensure the user is not an admin
+            if (Auth::user()->role == 'admin') {
+                return view('admin-create-account');
+            } else {
+                return redirect('user/dashboard');
+            }
+        }
+        return redirect('/');
+    }
+
+    /**
      * Log the user out of the application.
      *
      * @return \Illuminate\Http\Response
