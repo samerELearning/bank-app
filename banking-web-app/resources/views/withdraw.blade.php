@@ -59,12 +59,30 @@
         .dashboard-button:hover {
             background-color: darkgreen;
         }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
     </style>
 </head>
 <body>
     <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
+    <!-- Display the error message -->
+    @if (session('error'))
+        <div class="alert alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
     <h1>Withdraw</h1>
-    <form action="{{ route('show.withdraw.form') }}" method="get">
+    <form action="/user/withdraw" method="post">
         @csrf
         <label for="account_number">Account Number:</label><br>
         <input type="text" id="account_number" name="account_number"><br>
