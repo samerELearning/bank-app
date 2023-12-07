@@ -256,4 +256,59 @@ class TransactionController extends Controller
         return redirect()->route('show.user.transactions', ['user' => $account->user_id])->with('success', 
                                  'Deposit successful.');
     }
+
+    /**
+     * Perform a transfer transaction for admins.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function adminTransfer(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'from_account_number' => 'required|exists:accounts,account_number',
+            'to_account_number' => 'required|exists:accounts,account_number',
+            'amount' => 'required|numeric|min:0',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->with(['error' => 'Account not found.']);
+        }
+
+        $from_account = Account::where('account_number', $request->from_account_number)
+                  ->first();
+
+        if (!$from_account) {
+            return redirect()->back()->with(['error' => 'First account not found.']);
+        }
+        if ($from_account->balance < $request->amount) {
+            return redirect()->back()->with(['error' => 'Insufficient balance in first account.']);
+        }
+
+        $to_account = Account::where('account_number', $request->to_account_number)
+                  ->first();
+
+        if (!$to_account) {
+            return redirect()->back()->with(['error' => 'Second account not found.']);
+        }
+
+        $from_account->balance -= $request->amount;
+        $from_account->save();
+
+        $to_account->balance += $request->amount;
+        $to_account->save();
+
+        // Create a new transaction record
+        $transaction = new Transaction;
+        $transaction->amount = $request->amount;
+        $transaction->transaction_type = 'transfer';
+        $transaction->user_id = $from_account->user_id;
+        $transaction->from_account_id = $from_account->id;
+        $transaction->to_account_id = $to_account->id;
+        $transaction->save();
+
+        return redirect()->route('show.user.transactions', ['user' => $from_account->user_id])->with('success', 
+                                 'Transfer successful.');
+    }
 }
