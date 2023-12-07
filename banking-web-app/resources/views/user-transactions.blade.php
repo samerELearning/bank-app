@@ -152,6 +152,17 @@
         .filter-form button:hover {
             background-color: darkgreen;
         }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
     </style>
 </head>
 <body>
@@ -168,6 +179,11 @@
         </select>
         <button type="submit">Search</button>
     </form>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     @if ($transactions->count())
         <h1><a href="{{ route('show.user.accounts', $user->id) }}" class="back-button"><</a>&nbsp;&nbsp;{{ $user->name }}'s Transactions</h1>
         <table>

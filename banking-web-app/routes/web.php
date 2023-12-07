@@ -37,7 +37,7 @@ Route::post('logout', 'App\Http\Controllers\UserController@logout')->name('logou
 Route::get('/user/dashboard', 'App\Http\Controllers\UserController@showUserDashboard')->name('user.dashboard');
 Route::get('/admin/dashboard', 'App\Http\Controllers\UserController@showAdminDashboard')->name('admin.dashboard');
 
-//Client operations routes
+//Client operation routes
 Route::get('/user/create-bank-account', 'App\Http\Controllers\UserController@showCreateBankAccountForm')->name('create.bank.account');
 Route::get('/user/show-bank-accounts', 'App\Http\Controllers\UserController@showBankAccounts')->name('show.bank.accounts');
 Route::get('/user/show-transaction-history', 'App\Http\Controllers\UserController@showTransactionHistory')->name('show.transaction.history');
@@ -45,7 +45,7 @@ Route::get('/user/withdraw', 'App\Http\Controllers\UserController@showWithdrawFo
 Route::get('/user/deposit', 'App\Http\Controllers\UserController@showDepositForm')->name('show.deposit.form');
 Route::get('/user/transfer', 'App\Http\Controllers\UserController@showTransferForm')->name('show.transfer.form');
 
-//Admin operations routes
+//Admin operation routes
 Route::get('/admin/show-users', 'App\Http\Controllers\UserController@showUsers')->name('show.users');
 Route::get('/admin/{user}/show-user-accounts', 'App\Http\Controllers\UserController@showUserAccounts')->name('show.user.accounts');
 Route::get('/admin/{user}/show-user-transactions', 'App\Http\Controllers\UserController@showUserTransactions')->name('show.user.transactions');
@@ -55,8 +55,11 @@ Route::get('/admin/deposit', 'App\Http\Controllers\UserController@showAdminDepos
 Route::get('/admin/transfer', 'App\Http\Controllers\UserController@showAdminTransferForm')->name('show.admin.transfer.form');
 Route::get('/admin/create-bank-account', 'App\Http\Controllers\UserController@showAdminCreateAccountForm')->name('show.admin.create.account.form');
 
-//Account operations routes for Client
+//Account operation routes for Client
 Route::post('/user/create-bank-account', 'App\Http\Controllers\AccountController@createUserAccount');
 Route::post('/user/withdraw', 'App\Http\Controllers\TransactionController@clientWithdraw');
 Route::post('/user/deposit', 'App\Http\Controllers\TransactionController@clientDeposit');
 Route::post('/user/transfer', 'App\Http\Controllers\TransactionController@clientTransfer');
+
+//Account operation routes for Admin
+Route::post('/admin/withdraw', 'App\Http\Controllers\TransactionController@adminWithdraw');

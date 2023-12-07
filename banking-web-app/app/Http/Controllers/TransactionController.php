@@ -197,7 +197,7 @@ class TransactionController extends Controller
         if (!$account) {
             return redirect()->back()->with(['error' => 'Account not found.']);
         }
-        
+
         if ($account->balance < $request->amount) {
             return redirect()->back()->with(['error' => 'Insufficient balance.']);
         }
@@ -213,6 +213,8 @@ class TransactionController extends Controller
         $transaction->from_account_id = $account->id;
         $transaction->save();
 
-        return redirect('/admin/show-transaction-history')->with('success', 'Withdrawal successful.');
+        //return redirect('/admin/show-user-transactions')->with('success', 'Withdrawal successful.');
+        return redirect()->route('show.user.transactions', ['user' => $account->user_id])->with('success', 
+                                 'Withdrawal successful.');
     }
 }

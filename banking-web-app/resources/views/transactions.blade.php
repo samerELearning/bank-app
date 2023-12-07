@@ -91,7 +91,6 @@
             border: 1px solid transparent;
             border-radius: 4px;
         }
-
         .alert-success {
             color: #3c763d;
             background-color: #dff0d8;
