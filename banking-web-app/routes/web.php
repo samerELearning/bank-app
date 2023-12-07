@@ -58,3 +58,4 @@ Route::get('/admin/create-bank-account', 'App\Http\Controllers\UserController@sh
 //Account operations routes for Client
 Route::post('/user/create-bank-account', 'App\Http\Controllers\AccountController@createUserAccount');
 Route::post('/user/withdraw', 'App\Http\Controllers\TransactionController@clientWithdraw');
+Route::post('/user/deposit', 'App\Http\Controllers\TransactionController@clientDeposit');
