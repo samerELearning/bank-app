@@ -63,7 +63,12 @@
 </head>
 <body>
     <a href="{{ route('user.dashboard') }}" class="dashboard-button">Go to Dashboard</a>
-
+    <!-- Display the error message -->
+    @if (session('error'))
+        <div class="alert alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
     <h1>Transfer</h1>
     <form action="/user/transfer" method="post">
         @csrf
