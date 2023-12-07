@@ -85,7 +85,6 @@
         .filter-form button:hover {
             background-color: darkgreen;
         }
-        }
     </style>
 </head>
 <body>

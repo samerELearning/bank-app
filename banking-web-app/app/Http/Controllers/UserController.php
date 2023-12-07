@@ -315,13 +315,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showUserTransactions($id)
+    public function showUserTransactions(Request $request, $id)
     {
+        $user = User::find($id);
+
         if (Auth::check()) { // if user is logged in
             // Ensure the user is an admin
             if (Auth::user()->role == 'admin') {
-                $transactions = User::find($id)->transactions()->paginate(10);
-                $user = User::find($id);
+                $query = Transaction::query();
+
+                if ($request->filled('account_number')) {
+                    $account_number = $request->input('account_number');
+                    $query->where(function ($query) use ($account_number) {
+                        $query->whereHas('fromAccount', function ($query) use ($account_number) {
+                            $query->where('account_number', $account_number);
+                        })->orWhereHas('toAccount', function ($query) use ($account_number) {
+                            $query->where('account_number', $account_number);
+                        });
+                    });
+                }
+                if ($request->filled('timestamp')) {
+                    $query->whereDate('created_at', $request->input('timestamp'));
+                }
+                if ($request->filled('transaction_type')) {
+                    $query->where('transaction_type', $request->input('transaction_type'));
+                }
+
+                $transactions = $query->paginate(10);
                 return view('user-transactions', ['transactions' => $transactions, 'user' => $user]);
             } else {
                 return redirect('user/dashboard');
