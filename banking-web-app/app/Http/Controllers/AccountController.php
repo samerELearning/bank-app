@@ -72,4 +72,53 @@ class AccountController extends Controller
         return redirect()->route('show.user.accounts', ['user' => $user->id])->with('success', 
                                  'Account created successfully.');
     }
+
+    /**
+     * Approve/reject account creation.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function approveAccount(Request $request, $id)
+    {
+        $account = Account::find($id);
+
+        if ($request->action == 'Approve') {
+            $account->status = 'active';
+        } elseif ($request->action == 'Reject') {
+            $account->status = 'blocked';
+        }
+
+        $account->save();
+
+        return redirect()->back()->with('success', 'Action performed successfully.');
+    }
+
+    /**
+     * Block users by admin.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function block($id)
+    {
+        $user = User::find($id);
+        $user->status = 'inactive';
+        $user->save();
+
+        return redirect()->back()->with('success', 'User blocked successfully.');
+    }
+
+    /**
+     * Unblock users by admin.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function unblock($id)
+    {
+        $user = User::find($id);
+        $user->status = 'active';
+        $user->save();
+
+        return redirect()->back()->with('success', 'User unblocked successfully.');
+    }
 }

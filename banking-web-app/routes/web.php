@@ -66,3 +66,6 @@ Route::post('/admin/withdraw', 'App\Http\Controllers\TransactionController@admin
 Route::post('/admin/deposit', 'App\Http\Controllers\TransactionController@adminDeposit');
 Route::post('/admin/transfer', 'App\Http\Controllers\TransactionController@adminTransfer');
 Route::post('/admin/create-bank-account', 'App\Http\Controllers\AccountController@createUserAccountByAdmin');
+Route::put('/account/{id}/approve', 'App\Http\Controllers\AccountController@approveAccount')->name('account.approve');
+Route::put('/account/{id}/block', 'App\Http\Controllers\AccountController@block')->name('user.block');
+Route::put('/account/{id}/unblock', 'App\Http\Controllers\AccountController@unblock')->name('user.unblock');

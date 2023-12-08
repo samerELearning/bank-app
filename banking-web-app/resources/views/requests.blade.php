@@ -102,11 +102,11 @@
                             <td>{{ $account->created_at }}</td>
                             <td>{{ $account->user->name }}</td>
                             <td>
-                                <form action="" method="post">
+                                <form action="{{ route('account.approve', $account->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <input type="submit" value="Approve" class="approve-button">
-                                    <input type="submit" value="Reject" class="reject-button">
+                                    <input type="submit" name="action" value="Approve" class="approve-button">
+                                    <input type="submit" name="action" value="Reject" class="reject-button">
                                 </form>
                             </td>
                         </tr>
@@ -116,7 +116,7 @@
         </table>
     {{ $accounts->links() }}
     @else
-    <p>You have no bank accounts.</p>
+    <p>There are no requests.</p>
     @endif
 </body>
 </html>

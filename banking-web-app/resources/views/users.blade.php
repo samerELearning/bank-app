@@ -105,16 +105,16 @@
                         </td>
                         <td>{{ $user->created_at }}</td>
                         <td>@if ($user->status == 'active')
-                                <form action="" method="post">
+                                <form action="{{ route('user.block', $user->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <input type="submit" value="Block" class="block-button">
+                                    <input type="submit" name="action" value="Block" class="block-button">
                                 </form>
                             @elseif ($user->status == 'inactive')
-                                <form action="" method="post">
+                                <form action="{{ route('user.unblock', $user->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <input type="submit" value="Unblock" class="unblock-button">
+                                    <input type="submit" name="action" value="Unblock" class="unblock-button">
                                 </form>
                             @endif
                         </td> 

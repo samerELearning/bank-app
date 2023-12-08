@@ -91,6 +91,14 @@ class UserController extends Controller
             // Get the currently authenticated user
             $user = Auth::user();
     
+            // Check if the user is inactive
+        if ($user->status == 'inactive') {
+            Auth::logout();
+            return back()->withErrors([
+                'loginError' => 'Your account has been blocked.',
+            ]);
+        }
+        
             // Check the user's role and redirect accordingly
             if ($user->role == 'admin') {
                 return redirect('/admin/dashboard');
